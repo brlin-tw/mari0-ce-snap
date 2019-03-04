@@ -28,7 +28,7 @@ description: |
   NOTE: This is NOT an official Mari0: Community Edition distribution, refer [the snap's issue tracker](https://github.com/Lin-Buo-Ren/mari0-ce-snap/issues) for more details
 
 icon: snap/gui/mari0-icon.256px.scaled.png
-license: MIT
+license: WTFPL
 version: determined-by-version-script
 version-script: ./snap/local/build-utilities/set-snap-version.bash
 
