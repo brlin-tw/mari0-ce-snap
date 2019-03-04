@@ -1,5 +1,5 @@
 # Unofficial Snap Packaging for Mari0: Community Edition
-This is the unofficial snap packaging for [Mari0: Community Edition](http://stabyourself.net/mari0), [Snaps are universal Linux packages](https://snapcraft.io).
+This is the unofficial snap packaging for [Mari0: Community Edition](https://github.com/Mari0-CE/Mari0-Community-Edition), [Snaps are universal Linux packages](https://snapcraft.io).
 
 Refer [snap/README.md](snap/README.md) for user-oriented information.
 
