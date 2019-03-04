@@ -64,10 +64,10 @@ parts:
 
   mari0-ce:
     source: https://github.com/Mari0-CE/Mari0-Community-Edition.git
-    source-depth: 1
+    source-depth: 80
 
     # For building stable releases
-    source-tag: '1.4'
+    #source-tag: '1.4'
 
     plugin: dump
     organize:
