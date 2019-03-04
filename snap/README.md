@@ -33,7 +33,6 @@ Published for <img src="http://anything.codes/slack-emoji-for-techies/emoji/tux.
 ## What is Working
 * Launch
 * Keyboard & mouse gameplay
-* External mappacks
 
 ## What is NOT Working...yet 
 Check out the [issue tracker](https://github.com/Lin-Buo-Ren/mari0-ce-snap/issues) for known issues.
