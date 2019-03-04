@@ -1,0 +1,116 @@
+%YAML 1.1
+---
+# Snapcraft Recipe for Mari0: Community Edition
+# ------------------------------
+# This file is in the YAML data serialization format:
+# http://yaml.org
+# For the spec. of writing this file refer the following documentation:
+# * The snapcraft format
+#   https://docs.snapcraft.io/the-snapcraft-format/8337
+# * Snap Documentation
+#   https://docs.snapcraft.io
+# * Topics under the doc category in the Snapcraft Forum
+#   https://forum.snapcraft.io/c/doc
+# For support refer to the snapcraft section in the Snapcraft Forum:
+# https://forum.snapcraft.io/c/snapcraft
+name: mari0-ce
+title: 'Mari0: Community Edition (UNOFFICIAL)'
+summary: A community-driven effort to fix and polish the latest version of Mari0:SE
+description: |
+  _**The open-source, community-driven counterpart to Alesan's Entities**_
+
+  (If you don't know what this game is, it's classic Mario Bros. but with a portal gun. It's fun. Play it.)
+
+  If you're looking for help or mappacks, or you made a mappack of your own, [the game's forum is here.](http://forum.stabyourself.net/viewforum.php?f=8&sid=22f68690172a445d290d953b52074c83)
+
+  If you think you'd prefer Alesan's Entities, you can find it [Here.](http://forum.stabyourself.net/viewtopic.php?f=13&t=3636) (please don't leave us)
+
+  NOTE: This is NOT an official Mari0: Community Edition distribution, refer [the snap's issue tracker](https://github.com/Lin-Buo-Ren/mari0-ce-snap/issues) for more details
+
+icon: snap/gui/mari0-icon.256px.scaled.png
+license: MIT
+version: determined-by-version-script
+version-script: ./snap/local/build-utilities/set-snap-version.bash
+
+base: core18
+confinement: strict
+grade: stable
+
+architectures:
+- build-on: i386
+- build-on: amd64
+- build-on: armhf
+- build-on: arm64
+- build-on: ppc64el
+
+parts:
+  # Utility programs to help with package building
+  build-utilities:
+    source: snap/local/build-utilities
+    plugin: dump
+    organize:
+      '*': assets/build-utilities/
+    prime:
+    - -*
+
+  # Launcher programs to fix problems at runtime
+  launchers:
+    source: snap/local/launchers
+    plugin: dump
+    organize:
+      '*': bin/
+    stage:
+    - -bin/README.*
+
+  mari0-ce:
+    source: https://github.com/Mari0-CE/Mari0-Community-Edition.git
+    source-depth: 1
+
+    # For building stable releases
+    source-tag: '1.4'
+
+    plugin: dump
+    organize:
+      '*': mari0-ce/
+
+  love:
+    plugin: nil
+    stage-snaps:
+    - love-brlin
+
+apps:
+  mari0-ce:
+    adapter: full
+    command: bin/love $SNAP/mari0-ce
+    command-chain:
+    - bin/workaround-snap-arch-triplet-launch
+    - bin/locales-launch
+    - bin/love-launch
+    - bin/mari0-ce-launch
+
+plugs:
+  # For snaps with a graphical user interface:
+  desktop:
+  desktop-legacy:
+  x11:
+  unity7:
+  wayland:
+
+  # Storage access
+  home:
+  removable-media: # Non-A/C
+
+  # Joystick access
+  joystick:
+
+  # Graphics rendering
+  opengl:
+
+  # Audio
+  pulseaudio:
+
+  # For inhibiting screensavor
+  screen-inhibit-control:
+
+  # Network access may be required by some games
+  network:
